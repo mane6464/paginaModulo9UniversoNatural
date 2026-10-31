@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 9 - Universo Natural | MEVAPREPA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .unidad {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .unidad-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .unidad-header:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+        }
+
+        .unidad-header h2 {
+            font-size: 1.5rem;
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .unidad-content {
+            padding: 2rem;
+            display: none;
+        }
+
+        .unidad-content.active {
+            display: block;
+        }
+
+        .subtema {
+            margin-bottom: 2rem;
+        }
+
+        .subtema h3 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .qa-item {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .qa-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .pregunta {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .respuesta {
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+
+        .respuesta strong {
+            color: #667eea;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: white;
+            background: rgba(0,0,0,0.3);
+            margin-top: 2rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .unidad-header h2 {
+                font-size: 1.2rem;
+            }
+
+            .stats {
+                gap: 1.5rem;
+            }
+        }
+
+        .formula {
+            background: #fff3cd;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: inline-block;
+            font-family: 'Courier New', monospace;
+            margin: 0.5rem 0;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+        }
+
+        .simulacro {
+            background: #fff;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            scroll-margin-top: 5rem;
+        }
+
+        .simulacro h2 {
+            color: #302b63;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .simulacro-intro,
+        .simulacro-toolbar,
+        .simulacro-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .simulacro-intro {
+            margin-bottom: 1.5rem;
+            color: #4a5568;
+        }
+
+        .simulacro-toolbar {
+            margin-bottom: 1.5rem;
+        }
+
+        .simulacro button {
+            border: 0;
+            border-radius: 8px;
+            padding: 0.8rem 1.2rem;
+            color: #fff;
+            background: #5145a5;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .simulacro button:hover {
+            background: #3e347f;
+            transform: translateY(-1px);
+        }
+
+        .simulacro button:focus-visible,
+        .simulacro input:focus-visible + span {
+            outline: 3px solid #f0ad4e;
+            outline-offset: 3px;
+        }
+
+        .pregunta-simulacro {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            margin: 0 0 1rem;
+            padding: 1.25rem;
+            min-width: 0;
+        }
+
+        .pregunta-simulacro legend {
+            padding: 0 0.5rem;
+            color: #2d3748;
+            font-weight: 700;
+        }
+
+        .tema-pregunta {
+            color: #667eea;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+        }
+
+        .opcion-simulacro {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+            margin-top: 0.65rem;
+            padding: 0.7rem 0.85rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .opcion-simulacro:hover {
+            background: #f7f7ff;
+            border-color: #b6b0e8;
+        }
+
+        .opcion-simulacro input {
+            margin-top: 0.35rem;
+            accent-color: #5145a5;
+        }
+
+        .opcion-simulacro.correcta {
+            background: #e8f7ee;
+            border-color: #4caf70;
+        }
+
+        .opcion-simulacro.incorrecta {
+            background: #fff0f0;
+            border-color: #df6969;
+        }
+
+        .resultado-simulacro {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            border-radius: 10px;
+            background: #f1f0ff;
+            color: #302b63;
+        }
+
+        .resultado-simulacro h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .resultado-simulacro p {
+            margin-bottom: 1rem;
+        }
+
+        .retroalimentacion {
+            margin-top: 0.75rem;
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+
+        .error-simulacro {
+            color: #9b2c2c;
+            padding: 1rem;
+            background: #fff0f0;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 600px) {
+            .simulacro {
+                padding: 1.25rem;
+            }
+
+            .simulacro-intro,
+            .simulacro-toolbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .simulacro h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Módulo 9: Universo Natural</h1>
+        <p>Preparatoria Abierta - MEVAPREPA</p>
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Unidades</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">23</div>
+                <div class="stat-label">Subtemas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">224</div>
+                <div class="stat-label">Preguntas</div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#simulacro">Examen simulacro</a></li>
+            <li><a href="#unidad1">Unidad 1: Materia y Energía</a></li>
+            <li><a href="#unidad2">Unidad 2: Universo</a></li>
+            <li><a href="#unidad3">Unidad 3: Sistemas Vivos</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section class="simulacro" id="simulacro" aria-labelledby="simulacro-titulo">
+            <h2 id="simulacro-titulo">Examen simulacro</h2>
+            <div class="simulacro-intro">
+                <p>Practica con 40 preguntas de opción múltiple tomadas de todos los subtemas. Cada examen cambia y no repite conceptos.</p>
+            </div>
+            <div class="simulacro-toolbar">
+                <span id="progreso-simulacro" aria-live="polite"></span>
+                <button id="nuevo-simulacro" type="button">Generar otro examen</button>
+            </div>
+            <div id="error-simulacro" class="error-simulacro" role="alert" hidden></div>
+            <form id="formulario-simulacro">
+                <div id="preguntas-simulacro"></div>
+                <div class="simulacro-actions">
+                    <button id="calificar-simulacro" type="submit">Calificar examen</button>
+                </div>
+            </form>
+            <div id="resultado-simulacro" class="resultado-simulacro" aria-live="polite" hidden></div>
+        </section>
+
+        <!-- UNIDAD 1 -->
+        <div class="unidad" id="unidad1">
+            <div class="unidad-header" onclick="toggleUnidad(this)">
+                <h2>Unidad 1: Materia y Energía</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="unidad-content active">
+                <!-- 1.1 Estructura Atómica -->
+                <div class="subtema">
+                    <h3>1.1 Estructura Atómica y Modelos Atómicos</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la materia?</div>
+                        <div class="respuesta">Es todo aquello que ocupa un espacio y tiene masa. Ejemplos: una mochila, una silla, el agua, los seres vivos.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es la diferencia entre materia y material?</div>
+                        <div class="respuesta">La <strong>materia</strong> es la sustancia de la que están hechas las cosas. El <strong>material</strong> se refiere a la aplicación o uso que le damos a la materia (ej. un lápiz es un material educativo formado por grafito, madera y goma).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué estudia la Química?</div>
+                        <div class="respuesta">Es la ciencia que estudia la materia cualitativamente (de qué están hechas las sustancias) y cuantitativamente (en qué cantidades se encuentran y sus propiedades de transformación).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Quiénes fueron los primeros en proponer que la materia está formada por átomos?</div>
+                        <div class="respuesta"><strong>Leucipo de Mileto</strong> y su discípulo <strong>Demócrito de Abdera</strong> (alrededor del año 500 a.C.). Propusieron que la materia está formada por partículas diminutas e indivisibles llamadas átomos.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué proponía Aristóteles sobre la composición de la materia?</div>
+                        <div class="respuesta">Que los objetos estaban conformados por cuatro elementos: agua, tierra, aire y fuego, generados a partir de combinaciones de propiedades opuestas: frío, calor, humedad y sequedad.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un modelo atómico?</div>
+                        <div class="respuesta">Es una propuesta para explicar la conformación de la materia, es decir, su estructura o el conjunto de rasgos que la caracterizan.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál fue el aporte principal de John Dalton (1803)?</div>
+                        <div class="respuesta">Formuló el primer modelo atómico o teoría atómica. Propuso que la materia está formada por partículas pequeñas llamadas átomos que no pueden destruirse, tienen peso y cualidades propias, y forman elementos al combinarse.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la ley de las proporciones múltiples de Dalton?</div>
+                        <div class="respuesta">Los elementos se combinan en proporciones fijas para formar compuestos. Por ejemplo, dos átomos de hidrógeno con un átomo de oxígeno forman agua (H₂O).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál fue el aporte principal de Joseph John Thomson (1897)?</div>
+                        <div class="respuesta">Comprobó que los rayos catódicos son un flujo de partículas cargadas negativamente llamadas electrones. Propuso que el átomo está formado por partículas de carga positiva y negativa distribuidas uniformemente, siendo eléctricamente neutro y estable (modelo del "pudín de pasas").</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son las partículas subatómicas?</div>
+                        <div class="respuesta">Son las partículas que se encuentran en el interior del átomo: electrones (carga negativa), protones (carga positiva) y neutrones (sin carga).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál fue el aporte principal de Ernest Rutherford (1911)?</div>
+                        <div class="respuesta">Probó la existencia del núcleo atómico. Propuso que el átomo está formado por un núcleo (con carga positiva y casi toda la masa) y una corteza (espacio vacío donde los electrones giran a gran velocidad).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Quién descubrió el neutrón y en qué año?</div>
+                        <div class="respuesta"><strong>James Chadwick</strong> en 1932. Confirmó la existencia de una partícula subatómica sin carga eléctrica cuya masa es igual a la del protón.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál fue el aporte principal de Niels Bohr (1913)?</div>
+                        <div class="respuesta">Propuso que los electrones giran alrededor del núcleo en órbitas circulares con niveles de energía constantes. Los electrones pueden saltar a órbitas superiores absorbiendo energía (electrones excitados) y al regresar emiten energía en forma de fotones o cuantos.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es la fórmula para calcular el número de electrones en un nivel de energía según Bohr?</div>
+                        <div class="respuesta"><span class="formula">2n²</span>, donde n es el número cuántico principal (niveles 1 al 7).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál fue el aporte de Dirac y Jordan (1926)?</div>
+                        <div class="respuesta">Formularon la teoría de la mecánica cuántica llamada teoría de la transformación. Proponen un modelo atómico mecánico cuántico basado en el doble comportamiento del electrón (partícula y onda) mediante cuatro números cuánticos: n, l, m y s.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el número cuántico principal n?</div>
+                        <div class="respuesta">Determina el nivel de energía de cada electrón en el átomo. Sus valores son 1, 2, 3, 4, 5, 6 y 7.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el número cuántico secundario l?</div>
+                        <div class="respuesta">Determina la forma del espacio en la que se desplazan los electrones (orbitales o subniveles de energía). Sus valores van de 0 a n−1.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cómo se calcula el número cuántico secundario l?</div>
+                        <div class="respuesta">Con la fórmula <span class="formula">l = n − 1</span>. Por ejemplo: para n = 1, l = 0; para n = 2, l = 0, 1.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué formas tienen los orbitales según el valor de l?</div>
+                        <div class="respuesta">l = 0: esférica (s); l = 1: cacahuate (p); l = 2: difusa (d); l = 3: f; l = 4: g.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el número cuántico magnético m?</div>
+                        <div class="respuesta">Determina la cantidad de electrones en cada subnivel y la orientación de los orbitales en el espacio. Se calcula con <span class="formula">m = 2l + 1</span>.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el número cuántico de spin s?</div>
+                        <div class="respuesta">Determina la rotación de los electrones sobre su propio eje. Sus valores son +1/2 y −1/2 (representados con flechas ↑↓).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la configuración electrónica?</div>
+                        <div class="respuesta">Es la distribución de los electrones en los orbitales de un átomo. Se obtiene multiplicando el nivel de energía (n) por la forma del subnivel (l), elevado al número de electrones (2m).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué establece el Principio de Aufbau?</div>
+                        <div class="respuesta">"Los orbitales de menor energía se llenan antes que los de mayor energía. Si hay dos o más orbitales del mismo nivel, un electrón ocupa cada uno hasta que todos están medio llenos."</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el diagrama de Moeller?</div>
+                        <div class="respuesta">Es un diagrama que indica la forma de distribuir los electrones en un átomo siguiendo el principio de Aufbau (1s², 2s², 2p⁶, 3s², 3p⁶, 4s², 3d¹⁰, etc.).</div>
+                    </div>
+                </div>
+
+                <!-- 1.2 Ley de Conservación -->
+                <div class="subtema">
+                    <h3>1.2 Ley de Conservación de la Materia y Niveles de Organización</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué establece la Ley de Conservación de la Materia de Lavoisier?</div>
+                        <div class="respuesta">"La materia no se crea ni se destruye, sólo se transforma." La cantidad de materia al inicio y al final de una transformación es la misma.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la estequiometría?</div>
+                        <div class="respuesta">Es la rama de la química que se encarga de la determinación o medición de las cantidades iniciales y finales de la materia cuando experimenta una transformación.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son los niveles de organización de la materia?</div>
+                        <div class="respuesta">Materia viva (seres vivos) y materia no viva o inerte (Tierra). Ambas están formadas por átomos, los cuales forman elementos y compuestos. Los átomos están formados por partículas subatómicas: electrones, protones y neutrones.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un elemento químico?</div>
+                        <div class="respuesta">Es la mínima cantidad de materia que no se puede dividir en formas más simples sin perder sus características o propiedades. Está formado por átomos iguales.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un compuesto químico?</div>
+                        <div class="respuesta">Es la unión química de dos o más elementos diferentes. Sus propiedades son diferentes a las de los elementos que lo forman.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es una mezcla?</div>
+                        <div class="respuesta">Es la unión física de dos o más elementos o compuestos que no reaccionan químicamente entre sí. Sus componentes se pueden separar por medios físicos.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es la diferencia entre mezcla homogénea y heterogénea?</div>
+                        <div class="respuesta">La <strong>homogénea</strong> está formada por una sola fase y su composición es uniforme (ej. agua potable, leche, aire). La <strong>heterogénea</strong> está formada por más de una fase y se distinguen sus componentes (ej. cemento con arena, agua con aceite).</div>
+                    </div>
+                </div>
+
+                <!-- 1.3 Propiedades y Cambios -->
+                <div class="subtema">
+                    <h3>1.3 Propiedades y Cambios de la Materia</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son las propiedades físicas de la materia?</div>
+                        <div class="respuesta">Son aquellas que describen algo externamente: color, apariencia, olor, textura, masa, peso, volumen, presión, rigidez, fragilidad, geometría.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son las propiedades químicas de la materia?</div>
+                        <div class="respuesta">Son aquellas que describen internamente cómo es un objeto: cantidad de electrones, protones y neutrones, solubilidad, reactividad, calor de descomposición, concentración, oxidación.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es una propiedad intensiva?</div>
+                        <div class="respuesta">Es aquella que <strong>no depende</strong> de la cantidad de materia. Ejemplo: la temperatura, la densidad.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es una propiedad extensiva?</div>
+                        <div class="respuesta">Es aquella que <strong>sí depende</strong> de la cantidad de materia. Ejemplo: el volumen, la masa.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un cambio químico?</div>
+                        <div class="respuesta">Es un cambio definitivo e irreversible en la materia que modifica su naturaleza e involucra el rompimiento de enlaces para formar otros. Ejemplo: quemar papel, freír un huevo.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un cambio físico?</div>
+                        <div class="respuesta">Es un cambio que no altera la composición de la materia. Ejemplo: estirar una liga, evaporar o congelar agua.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un cambio nuclear?</div>
+                        <div class="respuesta">Es un cambio que modifica internamente el átomo, alterando la cantidad de protones, electrones y neutrones para generar átomos diferentes. Libera mucha energía. Ejemplo: fusión y fisión nuclear.</div>
+                    </div>
+                </div>
+
+                <!-- 1.4 Estados de Agregación -->
+                <div class="subtema">
+                    <h3>1.4 Estados de Agregación de la Materia</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son los estados de agregación de la materia?</div>
+                        <div class="respuesta">Sólido, líquido, gaseoso y plasma.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son las características del estado sólido?</div>
+                        <div class="respuesta">Tiene forma y volumen fijo, no se puede comprimir, no fluye y su presión es mínima.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son las características del estado líquido?</div>
+                        <div class="respuesta">Se adapta a la forma del recipiente, su volumen es fijo, tiene fluidez y es poco compresible.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son las características del estado gaseoso?</div>
+                        <div class="respuesta">No tiene forma ni volumen fijos, ocupa todo el volumen del recipiente, es compresible y tiende a mezclarse con otros gases.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son las características del plasma?</div>
+                        <div class="respuesta">Es un gas formado por cargas negativas y positivas moviéndose libremente en un volumen fijo. Se encuentra en las estrellas y nebulosas.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cómo se llama el cambio de sólido a líquido?</div>
+                        <div class="respuesta"><strong>Fusión</strong>.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cómo se llama el cambio de líquido a sólido?</div>
+                        <div class="respuesta"><strong>Solidificación</strong>.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cómo se llama el cambio de líquido a gas?</div>
+                        <div class="respuesta"><strong>Ebullición</strong>.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cómo se llama el cambio de gas a líquido?</div>
+                        <div class="respuesta"><strong>Condensación</strong>.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cómo se llama el cambio de sólido a gas?</div>
+                        <div class="respuesta"><strong>Sublimación</strong>.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cómo se llama el cambio de gas a sólido?</div>
+                        <div class="respuesta"><strong>Deposición</strong> o sublimación inversa.</div>
+                    </div>
+                </div>
+
+                <!-- 1.5 Enlaces Químicos -->
+                <div class="subtema">
+                    <h3>1.5 Enlaces Químicos</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un enlace químico?</div>
+                        <div class="respuesta">Es la fuerza que mantiene unidos a los átomos de los elementos para formar un compuesto químico.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un enlace iónico?</div>
+                        <div class="respuesta">Es la atracción electrostática entre dos átomos de cargas opuestas: un catión (ión positivo) y un anión (ión negativo). Un átomo gana electrones y otro los pierde.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un catión?</div>
+                        <div class="respuesta">Es un átomo que pierde uno o más electrones y adquiere carga positiva.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un anión?</div>
+                        <div class="respuesta">Es un átomo que gana uno o más electrones y adquiere carga negativa.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué establece la regla del octeto de Lewis?</div>
+                        <div class="respuesta">Los átomos tienden a ganar, perder o compartir electrones para completar su último nivel de energía con 8 electrones.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un enlace covalente?</div>
+                        <div class="respuesta">Es la compartición de uno o más pares de electrones entre dos átomos. No hay pérdida ni ganancia de electrones.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un enlace covalente coordinado?</div>
+                        <div class="respuesta">Es un tipo de enlace covalente donde uno de los átomos dona uno o más pares de electrones para compartirlos con otro átomo que solo aporta el espacio.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un enlace metálico?</div>
+                        <div class="respuesta">Es la deslocalización de los electrones de valencia cuando los átomos quedan unidos. Los electrones se mueven libremente formando un "mar de electrones". Se da entre átomos metálicos.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la oxidación?</div>
+                        <div class="respuesta">Es el proceso químico en el que una sustancia pierde electrones.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la reducción?</div>
+                        <div class="respuesta">Es el proceso químico en el que una sustancia gana electrones.</div>
+                    </div>
+                </div>
+
+                <!-- 1.6 Tabla Periódica -->
+                <div class="subtema">
+                    <h3>1.6 Tabla Periódica y Propiedades Periódicas</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la tabla periódica?</div>
+                        <div class="respuesta">Es una herramienta que contiene de manera organizada y clasificada todos los elementos o sustancias puras descubiertos hasta hoy.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Quién propuso la tabla periódica actual y en qué año?</div>
+                        <div class="respuesta"><strong>Dimitri Mendeleiev</strong> en 1869, quien ordenó los elementos en función de su peso atómico y propiedades químicas.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el número atómico (Z)?</div>
+                        <div class="respuesta">Es la cantidad de electrones o protones que tiene un átomo. Se representa con la letra Z.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el número de masa (A)?</div>
+                        <div class="respuesta">Es la cantidad de protones y neutrones de un solo átomo. Se representa con la letra A.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la masa atómica?</div>
+                        <div class="respuesta">Es el promedio de la masa de todos los isótopos de un elemento. Se mide en unidades de masa atómica (uma).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los isótopos?</div>
+                        <div class="respuesta">Son átomos que tienen el mismo número atómico pero diferente número de masa (diferente cantidad de neutrones). Ejemplo: ¹H, ²H, ³H.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuántas columnas y periodos tiene la tabla periódica?</div>
+                        <div class="respuesta">18 columnas (grupos o familias) y 7 periodos (niveles de energía).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los grupos A y B en la tabla periódica?</div>
+                        <div class="respuesta">Los grupos A (IA a VIIIA) incluyen elementos representativos. Los grupos B (IB a XB) se llaman metales de transición.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los metales?</div>
+                        <div class="respuesta">Elementos que son buenos conductores de electricidad y calor, tienen brillo, son maleables (se pueden moldear) y dúctiles (forman hilos).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los no metales?</div>
+                        <div class="respuesta">Elementos malos conductores de electricidad y calor, no son maleables ni dúctiles y no presentan brillo.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los metaloides o semimetales?</div>
+                        <div class="respuesta">Elementos que se comportan como metales y no metales. Ejemplo: silicio, arsénico.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la electronegatividad?</div>
+                        <div class="respuesta">Es la capacidad o fuerza que tiene un átomo para atraer hacia él los electrones que se enlazan. Aumenta de izquierda a derecha y de abajo hacia arriba. El más electronegativo es el flúor.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la energía de ionización?</div>
+                        <div class="respuesta">Es la energía necesaria para quitarle uno o más electrones a un átomo en estado gaseoso. Aumenta de abajo hacia arriba y de izquierda a derecha.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la afinidad electrónica?</div>
+                        <div class="respuesta">Es la energía necesaria para que un átomo gane uno o más electrones en estado gaseoso.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el radio atómico?</div>
+                        <div class="respuesta">Es la distancia entre el centro del núcleo de un átomo y sus electrones de valencia. Aumenta de arriba hacia abajo y de derecha a izquierda.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un uma?</div>
+                        <div class="respuesta">Es la unidad de masa atómica de un átomo e indica la cantidad de materia del átomo.</div>
+                    </div>
+                </div>
+
+                <!-- 1.7 Nomenclatura Química -->
+                <div class="subtema">
+                    <h3>1.7 Nomenclatura Química</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los compuestos binarios?</div>
+                        <div class="respuesta">Son aquellos formados por dos elementos. Ejemplos: hidrácidos (HF, HCl) e hidruros metálicos (NaH, KH).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los compuestos ternarios?</div>
+                        <div class="respuesta">Son aquellos formados por tres elementos. Ejemplos: oxoácidos, hidróxidos y sales de ácidos.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los compuestos cuaternarios?</div>
+                        <div class="respuesta">Son aquellos formados por cuatro elementos. Ejemplo: sales ácidas como Na₂HPO₄.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cómo se nombran los hidrácidos?</div>
+                        <div class="respuesta">No metal con terminación <strong>uro</strong> + hidrógeno. Ejemplo: HF = fluoruro de hidrógeno.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cómo se nombran los hidruros metálicos?</div>
+                        <div class="respuesta"><strong>Hidruro</strong> + metal. Ejemplo: NaH = hidruro de sodio.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cómo se nombran los hidróxidos?</div>
+                        <div class="respuesta"><strong>Hidróxido</strong> + metal. Ejemplo: NaOH = hidróxido de sodio.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué estudia la química orgánica?</div>
+                        <div class="respuesta">Estudia los compuestos orgánicos, constituidos principalmente por carbono. Se conocen más de 13 millones de compuestos con carbono.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los hidrocarburos?</div>
+                        <div class="respuesta">Son compuestos orgánicos formados por carbono e hidrógeno. Su fuente principal es el petróleo.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son los tres tipos de hidrocarburos?</div>
+                        <div class="respuesta"><strong>Alcanos</strong> (enlaces simples), <strong>alquenos</strong> (enlaces dobles) y <strong>alquinos</strong> (enlaces triples).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los alcanos?</div>
+                        <div class="respuesta">Hidrocarburos saturados con enlaces covalentes simples entre carbono e hidrógeno. Fórmula general: <span class="formula">CₙH₂ₙ₊₂</span>.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los alquenos?</div>
+                        <div class="respuesta">Hidrocarburos insaturados con enlaces covalentes dobles entre carbonos. Fórmula general: <span class="formula">CₙH₂ₙ</span>.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los alquinos?</div>
+                        <div class="respuesta">Hidrocarburos insaturados con enlaces covalentes triples entre carbonos. Fórmula general: <span class="formula">CₙH₂ₙ₋₂</span>.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un grupo funcional?</div>
+                        <div class="respuesta">Es un conjunto de átomos en un compuesto químico que tienen un comportamiento característico y determinan las propiedades químicas de las sustancias.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es el grupo funcional de los alcoholes?</div>
+                        <div class="respuesta">–OH (grupo hidroxilo o alcohólico). Terminación: <strong>ol</strong>. Ejemplo: glicerol.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es el grupo funcional de los aldehídos?</div>
+                        <div class="respuesta">–CHO (grupo carbonilo al final de la cadena). Terminación: <strong>al</strong>. Ejemplo: metanal (formol).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es el grupo funcional de las cetonas?</div>
+                        <div class="respuesta">–CO– (grupo carbonilo en medio de la cadena). Terminación: <strong>ona</strong>. Ejemplo: propanona (acetona).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es el grupo funcional de los ácidos carboxílicos?</div>
+                        <div class="respuesta">–COOH (grupo carboxilo). Terminación: <strong>oico</strong>. Ejemplo: ácido acético (vinagre).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es el grupo funcional de las aminas?</div>
+                        <div class="respuesta">–NH₂ (grupo amino). Se nombran con la palabra <strong>amina</strong>. Ejemplo: dietilamina.</div>
+                    </div>
+                </div>
+
+                <!-- 1.8 Disoluciones -->
+                <div class="subtema">
+                    <h3>1.8 Disoluciones</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es una disolución?</div>
+                        <div class="respuesta">Es una mezcla homogénea formada por dos o más componentes donde no hay reacción química entre ellos.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el disolvente?</div>
+                        <div class="respuesta">Es el componente que se encuentra en mayor proporción en una disolución. El disolvente universal es el agua.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el soluto?</div>
+                        <div class="respuesta">Es el componente que se encuentra en menor proporción en una disolución.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es una disolución diluida?</div>
+                        <div class="respuesta">Aquella en que la cantidad de soluto es mucho menor a la cantidad máxima que puede disolverse.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es una disolución saturada?</div>
+                        <div class="respuesta">Aquella en que la cantidad de soluto es la máxima que puede disolverse.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es una disolución sobresaturada?</div>
+                        <div class="respuesta">Aquella en que la cantidad de soluto es mayor a la cantidad máxima que puede disolverse; el soluto no disuelto se observa en el fondo.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es la fórmula del porcentaje en masa?</div>
+                        <div class="respuesta"><span class="formula">% en masa = (masa del soluto / masa de la disolución) × 100</span></div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es la fórmula de la concentración molar (M)?</div>
+                        <div class="respuesta"><span class="formula">M = moles de soluto / volumen de la disolución</span></div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es la fórmula de partes por millón (ppm)?</div>
+                        <div class="respuesta"><span class="formula">ppm = miligramos de soluto / un litro de disolución</span></div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un mol?</div>
+                        <div class="respuesta">Es una unidad para medir la cantidad de materia a nivel microscópico. Un mol de cualquier elemento es igual a la masa atómica de ese elemento expresada en gramos.</div>
+                    </div>
+                </div>
+
+                <!-- 1.9 Energía -->
+                <div class="subtema">
+                    <h3>1.9 Energía</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la energía?</div>
+                        <div class="respuesta">Es la capacidad para hacer un trabajo o generar un cambio o transformación de la materia.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la energía cinética?</div>
+                        <div class="respuesta">Es la energía que posee un objeto debido a su movimiento. Fórmula: <span class="formula">Eₖ = ½mv²</span>.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la energía potencial?</div>
+                        <div class="respuesta">Es la energía que tiene un cuerpo debido a su posición o altura. Fórmula: <span class="formula">Eₚ = mgh</span>, donde g = 9.81 m/s².</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué establece la ley de conservación de la energía?</div>
+                        <div class="respuesta">La energía no se crea ni se destruye, sólo se transforma. Fue enunciada por Hermann Ludwig von Helmholtz.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son las manifestaciones de la energía?</div>
+                        <div class="respuesta">Térmica (calor), eléctrica (corriente de electrones), eólica (viento), hidráulica (agua), geodésica (movimiento de la Tierra), luminosa (fotones), química (enlaces) y nuclear (fisión/fusión).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la energía nuclear?</div>
+                        <div class="respuesta">Es la energía producida por la liberación de núcleos atómicos durante la fisión (división) o fusión (unión) nuclear de determinados elementos.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UNIDAD 2 -->
+        <div class="unidad" id="unidad2">
+            <div class="unidad-header" onclick="toggleUnidad(this)">
+                <h2>Unidad 2: Universo</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="unidad-content">
+                <!-- 2.1 Historia de la Ciencia -->
+                <div class="subtema">
+                    <h3>2.1 Historia de la Ciencia y Método Científico</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles fueron los dos grandes errores de Aristóteles en la física?</div>
+                        <div class="respuesta">1) Suponer que los cuerpos en movimiento requieren una fuerza de empuje constante. 2) Afirmar que los objetos más pesados caen más aprisa que los ligeros.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el método científico?</div>
+                        <div class="respuesta">Es la base de todas las ciencias modernas. Incluye descripción, sistematización, medida, explicación, predicción y conocimiento del universo.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son las características del conocimiento científico?</div>
+                        <div class="respuesta">Objetivo, fáctico, racional, trascendente, claro y preciso.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la percepción según Aristóteles?</div>
+                        <div class="respuesta">Es la sensación interior que resulta de una impresión material hecha con nuestros sentidos, la cual consideraba imperfecta.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la duda metódica?</div>
+                        <div class="respuesta">Es una parte básica del espíritu científico que consiste en poner en tela de juicio todo aquello que se observa. Fue propuesta por René Descartes.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son los cuatro pasos del método de Descartes?</div>
+                        <div class="respuesta">1) No admitir nada como verdadero sin evidencia. 2) Dividir cada dificultad en partes. 3) Conducir los pensamientos de lo simple a lo complejo. 4) Hacer recuentos y revisiones generales.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Quién fue Francis Bacon y cuál fue su aporte?</div>
+                        <div class="respuesta">Filósofo inglés que aportó el método experimental inductivo. Su obra Novum Organum influyó en la observación y experimentación precisas.</div>
+                    </div>
+                </div>
+
+                <!-- 2.2 Revolución Copernicana -->
+                <div class="subtema">
+                    <h3>2.2 La Revolución Copernicana y las Leyes de Kepler</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué proponía el modelo geocéntrico de Ptolomeo?</div>
+                        <div class="respuesta">Que el Sol, la Luna y los planetas giraban alrededor de la Tierra en órbitas circulares con epiciclos.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué proponía el modelo heliocéntrico de Copérnico?</div>
+                        <div class="respuesta">Que la Tierra y los planetas giran alrededor del Sol, y no al revés. Fue publicado en De revolutionibus orbium caelestium.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Quién fue Tycho Brahe y cuál fue su aporte?</div>
+                        <div class="respuesta">Astrónomo danés que dedicó su vida a la observación minuciosa de los cielos, acumulando gran cantidad de datos sobre la posición de los planetas respecto a la Tierra.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Quién fue Johannes Kepler y cuál fue su aporte?</div>
+                        <div class="respuesta">Astrónomo y matemático alemán que, usando los datos de Tycho Brahe, descubrió que los planetas giran alrededor del Sol en órbitas elípticas, no circulares.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es la Primera Ley de Kepler?</div>
+                        <div class="respuesta">Los planetas tienen movimientos elípticos alrededor del Sol, estando éste situado en uno de los dos focos de la elipse.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es la Segunda Ley de Kepler?</div>
+                        <div class="respuesta">Al trazar segmentos de recta desde el Sol hasta un planeta, las áreas barridas son proporcionales al tiempo empleado. Los planetas se mueven más rápido cuando están más cerca del Sol.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es la Tercera Ley de Kepler?</div>
+                        <div class="respuesta">El cuadrado de los periodos de la órbita de los planetas es proporcional al cubo de la distancia promedio al Sol. <span class="formula">T² = kL³</span>.</div>
+                    </div>
+                </div>
+
+                <!-- 2.3 Galileo y Newton -->
+                <div class="subtema">
+                    <h3>2.3 Galileo y las Leyes de Newton</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Quién fue Galileo Galilei y cuál fue su aporte?</div>
+                        <div class="respuesta">Físico, astrónomo y matemático italiano. Construyó un telescopio que permitió observar lunas de Júpiter, montañas en la Luna y estrellas en la Vía Láctea. Es considerado el padre de la astronomía, la física y la ciencia modernas.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué demostró Galileo sobre la caída de los cuerpos?</div>
+                        <div class="respuesta">Que sin importar su tamaño o masa, todos los objetos caen hacia la Tierra con la misma rapidez (contradiciendo a Aristóteles).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué establece la Primera Ley de Newton o Ley de la Inercia?</div>
+                        <div class="respuesta">Todo cuerpo se moverá con velocidad constante a menos que se le aplique una fuerza. Un cuerpo en reposo permanece en reposo si no se le aplica una fuerza.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué establece la Segunda Ley de Newton o Ley de Fuerza?</div>
+                        <div class="respuesta">Si se aplica una fuerza sobre un objeto, éste experimentará una aceleración directamente proporcional a la fuerza aplicada. <span class="formula">F = ma</span>.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué establece la Tercera Ley de Newton o Ley de Acción-Reacción?</div>
+                        <div class="respuesta">Toda acción genera una reacción de igual magnitud pero dirección opuesta.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la fuerza neta?</div>
+                        <div class="respuesta">Es el resultado de la suma vectorial de todas las fuerzas que actúan sobre un cuerpo.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la Ley de la Gravitación Universal de Newton?</div>
+                        <div class="respuesta">La fuerza gravitacional entre dos cuerpos es directamente proporcional al producto de sus masas e inversamente proporcional al cuadrado de la distancia que los separa. <span class="formula">F = G(m₁m₂)/d²</span>.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es el valor de la constante de gravitación universal G?</div>
+                        <div class="respuesta"><span class="formula">G = 6.67 × 10⁻¹¹ N·m²/kg²</span>.</div>
+                    </div>
+                </div>
+
+                <!-- 2.4 Geología -->
+                <div class="subtema">
+                    <h3>2.4 Geología y Eras Geológicas</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la geología?</div>
+                        <div class="respuesta">Es la ciencia que estudia la forma exterior e interior del globo terrestre, la naturaleza de las materias que lo componen, su formación, evolución y localización actual.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la estratigrafía?</div>
+                        <div class="respuesta">Es la rama de la geología que estudia la disposición y los caracteres de las rocas sedimentarias estratificadas.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué establece el principio de superposición de Steno?</div>
+                        <div class="respuesta">Las capas de sedimento se depositan en una secuencia tal que las más antiguas se encuentran en posición inferior a las más recientes.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un fósil?</div>
+                        <div class="respuesta">Es la sustancia petrificada de origen orgánico (huesos, conchas, semillas) o la impresión o molde que denota la existencia de organismos de épocas geológicas pasadas.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la datación radiactiva?</div>
+                        <div class="respuesta">Es un método para conocer la antigüedad de un fósil utilizando la semidesintegración de isótopos radiactivos, como el carbono 14.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es el tiempo de semidesintegración del carbono 14?</div>
+                        <div class="respuesta"><strong>5730 años</strong>. Es fiable para muestras orgánicas de menos de 60,000 años.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son las cuatro capas de la Tierra?</div>
+                        <div class="respuesta">Corteza terrestre (3-70 km), manto terrestre (hasta 2,890 km), núcleo externo (semisólido, hasta 3,400 km) y núcleo interno (sólido, radio de 1,220 km).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son las cuatro eras geológicas?</div>
+                        <div class="respuesta">Precámbrico, Paleozoico, Mesozoico y Cenozoico.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué caracteriza al Precámbrico?</div>
+                        <div class="respuesta">Es la era más antigua (4,500 a 570 millones de años). Época de grandes convulsiones, intensa actividad volcánica, un solo océano y un solo continente. Posibles indicios de vida bacteriana.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué caracteriza al Paleozoico?</div>
+                        <div class="respuesta">Duración de 300 millones de años. Aparecen seres acuáticos simples, luego peces con espina dorsal, anfibios y plantas terrestres. Se formó el carbón.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué caracteriza al Mesozoico?</div>
+                        <div class="respuesta">Hegemonía de los dinosaurios. Clima más cálido. Se divide en Triásico, Jurásico y Cretáceo. Termina con la extinción de los dinosaurios.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué caracteriza al Cenozoico?</div>
+                        <div class="respuesta">Era más reciente (65 millones de años). Se distribuyen los continentes actuales. Dominan los mamíferos. Aparecen los homínidos. Se presentan glaciaciones.</div>
+                    </div>
+                </div>
+
+                <!-- 2.5 Vulcanismo y Sismicidad -->
+                <div class="subtema">
+                    <h3>2.5 Vulcanismo y Sismicidad</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el vulcanismo?</div>
+                        <div class="respuesta">Es la actividad volcánica que se manifiesta a través de erupciones que expulsan lava, cenizas, gases y humo desde el interior de la Tierra.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un volcán?</div>
+                        <div class="respuesta">Es un conducto que comunica directamente el interior de la Tierra, particularmente el manto, con la superficie.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es la diferencia entre magma y lava?</div>
+                        <div class="respuesta">El <strong>magma</strong> es roca fundida en el interior de la Tierra; la <strong>lava</strong> es el magma que ha salido a la superficie.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son los tipos de volcanes según su actividad?</div>
+                        <div class="respuesta"><strong>Activos</strong> (en erupción constante), <strong>durmientes</strong> (actividad esporádica) y <strong>extintos</strong> (sin actividad y sin posibilidad de reactivarse).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los materiales piroclásticos?</div>
+                        <div class="respuesta">Son fragmentos de roca incandescente arrojados durante una erupción volcánica, que pueden ser desde polvo fino y cenizas hasta enormes rocas.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la sismicidad?</div>
+                        <div class="respuesta">Es la actividad sísmica de la Tierra, que se manifiesta a través de terremotos o sismos.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la teoría de la tectónica de placas?</div>
+                        <div class="respuesta">Teoría que explica que la corteza terrestre está formada por grandes parches llamados placas tectónicas que se mueven lenta y continuamente, interactuando entre sí.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el foco de un terremoto?</div>
+                        <div class="respuesta">Es el punto a lo largo de un plano de falla donde se origina un terremoto, en el interior de la corteza terrestre.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el epicentro de un terremoto?</div>
+                        <div class="respuesta">Es la proyección del foco hacia la superficie terrestre.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Para qué se utiliza la escala de Richter?</div>
+                        <div class="respuesta">Es una escala logarítmica arbitraria que pretende cuantificar la energía liberada en un terremoto. Fue creada por Charles Richter.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cómo se clasifican los sismos según la escala de Richter?</div>
+                        <div class="respuesta">Menores a 4: imperceptibles. Entre 4 y 6: moderados. Entre 6 y 8: fuertes. Mayores a 8: catastróficos.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UNIDAD 3 -->
+        <div class="unidad" id="unidad3">
+            <div class="unidad-header" onclick="toggleUnidad(this)">
+                <h2>Unidad 3: Sistemas Vivos</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="unidad-content">
+                <!-- 3.1 Bioelementos -->
+                <div class="subtema">
+                    <h3>3.1 Bioelementos</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los bioelementos?</div>
+                        <div class="respuesta">Son los elementos químicos indispensables para la vida. Todos los seres vivos estamos formados por los mismos 25 elementos.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cómo se clasifican los bioelementos?</div>
+                        <div class="respuesta">Primarios, secundarios y terciarios u oligoelementos.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son los bioelementos primarios?</div>
+                        <div class="respuesta">Carbono (C), hidrógeno (H), oxígeno (O), nitrógeno (N), azufre (S) y fósforo (P). Constituyen el 96% de la masa de la materia viva.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son los bioelementos secundarios?</div>
+                        <div class="respuesta">Magnesio, potasio, sodio, cloro, hierro, yodo y calcio. Se encuentran en un 4.5% en la materia viva.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los oligoelementos?</div>
+                        <div class="respuesta">Son bioelementos terciarios que se presentan en cantidades pequeñas (menos del 0.05%) pero son indispensables. Ejemplos: manganeso, cobre, zinc, flúor, yodo, selenio.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Por qué el carbono es tan importante para la vida?</div>
+                        <div class="respuesta">Porque forma enlaces covalentes estables, tiene configuración tetraédrica que permite estructuras tridimensionales, y puede formar largas cadenas y macromoléculas.</div>
+                    </div>
+                </div>
+
+                <!-- 3.2 Biomoléculas -->
+                <div class="subtema">
+                    <h3>3.2 Biomoléculas</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son las biomoléculas?</div>
+                        <div class="respuesta">Son las moléculas que constituyen a los seres vivos. Se forman a partir de bioelementos y contienen carbono, hidrógeno, oxígeno y nitrógeno.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cómo se clasifican las biomoléculas?</div>
+                        <div class="respuesta">Inorgánicas (agua y sales minerales) y orgánicas (carbohidratos, lípidos, proteínas y ácidos nucleicos).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los carbohidratos o glúcidos?</div>
+                        <div class="respuesta">Son biomoléculas compuestas por C, H y O. Incluyen azúcares de 5 y 6 carbonos, disacáridos y polisacáridos. Función: fuente de energía inmediata.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son ejemplos de carbohidratos?</div>
+                        <div class="respuesta">Glucosa (fuente de energía), sacarosa (azúcar de transporte en plantas), almidón (almacenamiento en plantas), glucógeno (almacenamiento en animales) y celulosa (estructura en plantas).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los lípidos?</div>
+                        <div class="respuesta">Son hidrocarburos no polares, insolubles en agua. Las células los utilizan como depósitos de energía, materiales estructurales y moléculas señalizadoras.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son los tipos de lípidos?</div>
+                        <div class="respuesta">Grasas y aceites (triglicéridos), fosfolípidos (membrana celular) y ceras (protección).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son las proteínas?</div>
+                        <div class="respuesta">Son biomoléculas formadas por cadenas de aminoácidos. Son la materia prima de huesos, pelo, y participan en el movimiento, defensa y comunicación celular.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son los cuatro niveles de estructura de las proteínas?</div>
+                        <div class="respuesta">Primaria (secuencia de aminoácidos), secundaria (hélices alfa y hojas plegadas), terciaria (plegamiento tridimensional) y cuaternaria (varias cadenas).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los ácidos nucleicos?</div>
+                        <div class="respuesta">Son polímeros de nucleótidos. Almacenan y recuperan la información hereditaria. Incluyen el ADN y el ARN.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el ADN?</div>
+                        <div class="respuesta">Ácido desoxirribonucleico. Es el material genético que almacena la información sobre su propia replicación y el orden de aminoácidos para formar proteínas. Tiene doble cadena en hélice.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el ARN?</div>
+                        <div class="respuesta">Ácido ribonucleico. Es una cadena simple que actúa como intermediario llevando la información del ADN para la síntesis de proteínas.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el ATP?</div>
+                        <div class="respuesta">Trifosfato de adenosina. Es el nucleótido de alta energía que proporciona energía para las reacciones celulares. Al hidrolizarse se convierte en ADP + Pi liberando energía.</div>
+                    </div>
+                </div>
+
+                <!-- 3.3 Grupos Funcionales -->
+                <div class="subtema">
+                    <h3>3.3 Grupos Funcionales de las Biomoléculas</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los grupos funcionales?</div>
+                        <div class="respuesta">Son estructuras con características específicas que otorgan reactividad a la molécula que las contiene. Están unidos por enlace covalente a los átomos de carbono.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los aldehídos y qué olor tienen?</div>
+                        <div class="respuesta">Compuestos con grupo carbonilo (–CHO) al final de la cadena. Los pequeños tienen olores desagradables; los grandes, aromas agradables (manzanas, vainilla).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son las cetonas?</div>
+                        <div class="respuesta">Compuestos con grupo carbonilo (–CO–) unido a dos átomos de carbono. Ejemplo: propanona (acetona).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los ácidos carboxílicos?</div>
+                        <div class="respuesta">Compuestos con grupo carboxilo (–COOH). Se ionizan para producir H⁺. Ejemplo: ácido acético (vinagre).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son las aminas?</div>
+                        <div class="respuesta">Derivados del amoniaco donde los hidrógenos son reemplazados por radicales. Tienen olores desagradables (putrefacción).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un aminoácido?</div>
+                        <div class="respuesta">Compuesto orgánico que contiene tanto un grupo carboxilo (–COOH) como un grupo amino (–NH₂). Son los bloques de construcción de las proteínas.</div>
+                    </div>
+                </div>
+
+                <!-- 3.4 Teorías del Origen -->
+                <div class="subtema">
+                    <h3>3.4 Teorías del Origen de la Vida</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la teoría de la generación espontánea?</div>
+                        <div class="respuesta">Antigua teoría (Aristóteles) que establecía que podía surgir vida compleja animal o vegetal de manera espontánea a partir de la materia inorgánica. También llamada abiogénesis.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la teoría de la panspermia?</div>
+                        <div class="respuesta">Hipótesis (Anaxágoras, H. Richter) que sugiere que las bacterias o la esencia de la vida se mantienen diseminadas por todo el universo y llegaron a la Tierra en meteoritos.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la síntesis abiótica o evolución química?</div>
+                        <div class="respuesta">Teoría (Alexander Oparin) que propone que las condiciones físico-químicas de la Tierra primitiva (energía solar, calor volcánico, descargas eléctricas) dieron origen a moléculas orgánicas a partir de inorgánicas.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la teoría hidrotermal?</div>
+                        <div class="respuesta">Teoría (Wachtershauser y Huber) que propone que la química primitiva de la vida ocurrió en la superficie de minerales próximos a fuentes hidrotermales, en ambientes anaerobios de alta temperatura y presión.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué demostró el experimento de Miller y Urey?</div>
+                        <div class="respuesta">Representa la primera comprobación de que se pueden formar espontáneamente moléculas orgánicas a partir de sustancias inorgánicas simples en condiciones ambientales adecuadas.</div>
+                    </div>
+                </div>
+
+                <!-- 3.5 La Célula -->
+                <div class="subtema">
+                    <h3>3.5 La Célula</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la célula?</div>
+                        <div class="respuesta">Es la unidad básica de estructura y función de todos los organismos vivos.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son los tres elementos fundamentales de toda célula?</div>
+                        <div class="respuesta">Membrana plasmática externa, región interna con ADN y citoplasma.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la membrana plasmática?</div>
+                        <div class="respuesta">Es una delgada membrana externa formada por una bicapa de lípidos y proteínas que separa las actividades metabólicas internas del exterior.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el citoplasma?</div>
+                        <div class="respuesta">Es una matriz semilíquida de componentes estructurales entre la membrana plasmática y la región del ADN, donde ocurren la síntesis de proteínas y las conversiones de energía.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son los dos tipos básicos de células?</div>
+                        <div class="respuesta">Procariontes (sin núcleo definido, como bacterias) y eucariontes (con núcleo definido, como células animales y vegetales).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son las principales diferencias entre células procariontes y eucariontes?</div>
+                        <div class="respuesta">Procariontes: pequeñas, sin núcleo, sin organelos membranosos, ADN en nucleoide, reproducción asexual por fisión binaria. Eucariontes: más grandes, con núcleo, con organelos, ADN en núcleo, reproducción sexual.</div>
+                    </div>
+                </div>
+
+                <!-- 3.6 Clasificación -->
+                <div class="subtema">
+                    <h3>3.6 Clasificación de los Seres Vivos</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son los tres dominios biológicos?</div>
+                        <div class="respuesta">Bacteria, Archaea y Eukarya.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué caracteriza al dominio Bacteria?</div>
+                        <div class="respuesta">Organismos procariontes, unicelulares, muy diversificados. Incluyen heterótrofos y autótrofos. Las cianobacterias realizan fotosíntesis.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué caracteriza al dominio Archaea?</div>
+                        <div class="respuesta">Arqueobacterias: procariontes unicelulares que se reproducen asexualmente. Viven en ambientes extremos (ciénagas, manantiales termales, géiseres).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué caracteriza al dominio Eukarya?</div>
+                        <div class="respuesta">Organismos unicelulares y multicelulares con células eucariontes. Incluye los reinos Protista, Fungi, Plantae y Animalia.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son los cinco reinos biológicos?</div>
+                        <div class="respuesta">Monera, Protista, Fungi (hongos), Plantae (plantas) y Animalia (animales).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué incluye el reino Monera?</div>
+                        <div class="respuesta">Grupo heterogéneo de células procariontes. Abarca autótrofos fotosintéticos, quimiosintéticos y heterótrofos. Todos los patógenos procariontes son bacterias.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué incluye el reino Protista?</div>
+                        <div class="respuesta">Organismos eucariontes unicelulares y unicelulares coloniales (protozoarios y fitoflagelados).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué incluye el reino Fungi?</div>
+                        <div class="respuesta">Hongos: especies multicelulares eucariontes con pared celular de quitina. Heterótrofos degradadores o parásitos.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué incluye el reino Plantae?</div>
+                        <div class="respuesta">Organismos fotosintéticos con clorofila, casi todos terrestres, con reproducción sexual. Incluye algas clorofíceas y vegetales superiores.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué incluye el reino Animalia?</div>
+                        <div class="respuesta">Todos los animales: heterótrofos multicelulares, casi todos con tejidos y órganos, reproducción sexual (algunos asexual).</div>
+                    </div>
+                </div>
+
+                <!-- 3.7 Energía en Seres Vivos -->
+                <div class="subtema">
+                    <h3>3.7 Energía en los Seres Vivos</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los organismos autótrofos?</div>
+                        <div class="respuesta">Son aquellos que sintetizan sus propios alimentos a partir de la fotosíntesis (plantas, algas, cianobacterias).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué son los organismos heterótrofos?</div>
+                        <div class="respuesta">Son aquellos que obtienen su energía de otros organismos, ya que no pueden producir su propio alimento (animales, hongos, protozoarios).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la fotosíntesis?</div>
+                        <div class="respuesta">Es el proceso mediante el cual las plantas y otros organismos fotoautótrofos elaboran azúcares y otros compuestos usando la luz solar como fuente de energía y el dióxido de carbono como fuente de carbono.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son las dos fases de la fotosíntesis?</div>
+                        <div class="respuesta">Fase luminosa (reacciones que requieren luz, producen ATP y NADPH) y fase oscura (síntesis de azúcares usando ATP y NADPH).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuál es la ecuación resumida de la fase luminosa?</div>
+                        <div class="respuesta"><span class="formula">ADP + Pi + H₂O + Energía (luz) → ATP + H⁺ + O₂</span></div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el ciclo de Krebs?</div>
+                        <div class="respuesta">Es una serie de reacciones químicas que permite a la célula oxidar el ácido pirúvico y otros productos del metabolismo, produciendo CO₂ y generando energía.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la fosforilación oxidativa?</div>
+                        <div class="respuesta">Es el patrón de generación de ATP en el que entre el NADH y el O₂ se interponen sustancias capaces de oxidarse y reducirse alternativamente, estableciendo una cascada de electrones.</div>
+                    </div>
+                </div>
+
+                <!-- 3.8 Procesos Vitales -->
+                <div class="subtema">
+                    <h3>3.8 Procesos Vitales</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la homeostasis?</div>
+                        <div class="respuesta">Es un mecanismo que regula el ambiente interno para mantener una condición estable y constante. Es un equilibrio dinámico.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la respiración celular?</div>
+                        <div class="respuesta">Es la serie integrada de reacciones químicas por medio de las cuales la célula obtiene energía a partir de alimentos o nutrientes. Ocurre en las mitocondrias.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son las tres fases de la respiración?</div>
+                        <div class="respuesta">1) Intercambio de gases entre la sangre y el medio aéreo. 2) Transporte de gases por la sangre. 3) Intercambio de gases entre la sangre y las células.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la digestión?</div>
+                        <div class="respuesta">Es el proceso por el cual los nutrientes se transforman a un estado químico adecuado para ser absorbidos hasta el aparato circulatorio y utilizados por las células.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son los órganos del sistema digestivo humano?</div>
+                        <div class="respuesta">Boca, faringe, esófago, estómago, intestino delgado (con hígado y páncreas como glándulas anexas), intestino grueso y recto.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la excreción?</div>
+                        <div class="respuesta">Es el proceso mediante el cual los organismos desalojan los productos metabólicos de desecho. Los riñones son los órganos excretores fundamentales.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la reproducción sexual?</div>
+                        <div class="respuesta">Es el proceso donde intervienen dos células llamadas gametos que unen sus núcleos para dar origen a una nueva célula. Es biparental (generalmente).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la reproducción asexual?</div>
+                        <div class="respuesta">Es el proceso donde no intervienen gametos, casi siempre hay división celular o mitosis e interviene un único progenitor.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son los tipos de reproducción asexual?</div>
+                        <div class="respuesta">División binaria, gemación, formación de esporas, reproducción vegetativa y partenogénesis.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un cigoto?</div>
+                        <div class="respuesta">Es la célula resultante de la unión del gameto masculino (espermatozoide) y el femenino (óvulo). Posee la información genética de ambos progenitores.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es un organismo hermafrodita?</div>
+                        <div class="respuesta">Es aquel que posee ambos sistemas reproductores y produce gametos femeninos y masculinos.</div>
+                    </div>
+                </div>
+
+                <!-- 3.9 Nutrición -->
+                <div class="subtema">
+                    <h3>3.9 Nutrición</h3>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la nutrición?</div>
+                        <div class="respuesta">Es la ciencia que estudia la composición y cantidad de alimentos que requiere el organismo humano y el papel fisiológico de las sustancias una vez que ingresan al organismo.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son los nutrientes requeridos por los seres del reino Animalia?</div>
+                        <div class="respuesta">Fuentes de energía (carbohidratos, grasas, proteínas), fuentes de carbono, fuentes de nitrógeno, factores de crecimiento (vitaminas), nutrientes inorgánicos (sales minerales) y agua.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la pirámide nutricional?</div>
+                        <div class="respuesta">Es una representación gráfica que sugiere la variedad de alimentos que debemos consumir diariamente. En la base están los de mayor consumo (cereales) y en la cima los de menor consumo (grasas y dulces).</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es el IMC?</div>
+                        <div class="respuesta">Es el Índice de Masa Corporal, un valor que se determina en base al peso y estatura de una persona e indica el rango más saludable de peso. Fórmula: <span class="formula">IMC = peso (kg) / altura² (m)</span>.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cómo se clasifica el IMC?</div>
+                        <div class="respuesta">Por debajo de 18.0: peso menor al normal. 18.1-24.9: normal. 25.0-29.9: sobrepeso. 30.0 o más: obesidad.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Qué es la obesidad y cómo se clasifica?</div>
+                        <div class="respuesta">Es una condición de exceso de peso. Tipo I: IMC 30.0-34.9. Tipo II: IMC 35.0-39.9. Tipo III (extrema): IMC mayor a 40.0.</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="pregunta">¿Cuáles son algunos hábitos para una dieta balanceada?</div>
+                        <div class="respuesta">Consumir variedad de alimentos, leer etiquetas, elaborar menús según la pirámide alimentaria, consumir frutas y verduras, preferir pan integral, retirar grasa de carnes, usar aceites vegetales, reducir azúcar y sal, y realizar actividad física diaria.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Módulo 9: Universo Natural - MEVAPREPA</p>
+        <p>Guía de estudio con 224 preguntas y respuestas</p>
+    </footer>
+
+    <script>
+        function toggleUnidad(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('.toggle-icon');
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.style.transform = 'rotate(-90deg)';
+            } else {
+                content.classList.add('active');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Smooth scroll para navegación
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Asegurar que la unidad esté visible
+                    const content = targetElement.querySelector('.unidad-content');
+                    if (content && !content.classList.contains('active')) {
+                        content.classList.add('active');
+                    }
+                }
+            });
+        });
+
+        const totalPreguntasSimulacro = 40;
+        const preguntasSimulacro = [];
+        const secciones = document.querySelectorAll('.subtema');
+
+        secciones.forEach(seccion => {
+            const titulo = seccion.querySelector('h3');
+            const unidad = seccion.closest('.unidad');
+            const preguntasSeccion = [];
+
+            seccion.querySelectorAll('.qa-item').forEach(elemento => {
+                const pregunta = elemento.querySelector('.pregunta');
+                const respuesta = elemento.querySelector('.respuesta');
+
+                if (!pregunta || !respuesta || !pregunta.textContent.trim() || !respuesta.textContent.trim()) {
+                    return;
+                }
+
+                const concepto = {
+                    pregunta: pregunta.textContent.trim(),
+                    respuesta: respuesta.textContent.trim().replace(/\s+/g, ' '),
+                    tema: titulo ? titulo.textContent.trim() : 'Universo Natural',
+                    unidad: unidad,
+                    preguntasSeccion: preguntasSeccion,
+                };
+                preguntasSeccion.push(concepto);
+                preguntasSimulacro.push(concepto);
+            });
+        });
+
+        function mezclar(array) {
+            const resultado = array.slice();
+            for (let i = resultado.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [resultado[i], resultado[j]] = [resultado[j], resultado[i]];
+            }
+            return resultado;
+        }
+
+        function preguntaAlternativa(pregunta) {
+            const transformaciones = [
+                [/^¿Cuál es la diferencia entre (.+)\?$/i, '¿En qué se distinguen $1?'],
+                [/^¿Qué es (.+)\?$/i, '¿Cómo se define $1?'],
+                [/^¿Qué son (.+)\?$/i, '¿Cómo se describen $1?'],
+                [/^¿Qué estudia (.+)\?$/i, '¿Cuál es el objeto de estudio de $1?'],
+                [/^¿Qué establece (.+)\?$/i, '¿En qué consiste $1?'],
+                [/^¿Qué proponía (.+)\?$/i, '¿Cuál era la propuesta de $1?'],
+                [/^¿Qué caracteriza (.+)\?$/i, '¿Qué rasgos distinguen $1?'],
+                [/^¿Qué incluye (.+)\?$/i, '¿Qué elementos forman parte de $1?'],
+                [/^¿Cómo se llama (.+)\?$/i, '¿Qué nombre recibe $1?'],
+                [/^¿Quién descubrió (.+) y en qué año\?$/i, '¿A qué persona y año se atribuye el descubrimiento de $1?'],
+                [/^¿Cuál fue el aporte principal de (.+)\?$/i, '¿Qué contribución principal presentó $1?'],
+                [/^¿Cuál fue el aporte de (.+)\?$/i, '¿Qué contribución se atribuye a $1?'],
+                [/^¿Cuántas (.+)\?$/i, '¿Qué cantidad de $1?'],
+                [/^¿Cuáles son las características de (.+)\?$/i, '¿Qué rasgos presenta $1?'],
+                [/^¿Cuáles son (.+)\?$/i, '¿Qué elementos componen $1?']
+            ];
+
+            for (const [patron, formato] of transformaciones) {
+                if (patron.test(pregunta)) {
+                    return pregunta.replace(patron, formato);
+                }
+            }
+
+            return `¿Qué opción responde correctamente a «${pregunta}»?`;
+        }
+
+        function respuestasDistractoras(concepto, version) {
+            const respuestas = [];
+            const usadas = new Set([concepto.respuesta.toLocaleLowerCase('es')]);
+            const grupos = [
+                concepto.preguntasSeccion,
+                preguntasSimulacro.filter(item => item.unidad === concepto.unidad),
+                preguntasSimulacro
+            ];
+
+            for (const grupo of grupos) {
+                const candidatas = mezclar(grupo.filter(item => {
+                    const clave = item.respuesta.toLocaleLowerCase('es');
+                    if (usadas.has(clave)) {
+                        return false;
+                    }
+                    usadas.add(clave);
+                    return true;
+                }));
+                respuestas.push(...candidatas);
+                if (respuestas.length >= 6) {
+                    break;
+                }
+            }
+
+            const seleccion = respuestas.length > 3
+                ? respuestas.slice(version === 0 ? 0 : 3, version === 0 ? 3 : 6)
+                : respuestas.slice(0, 3);
+
+            while (seleccion.length < 3 && respuestas.length > 0) {
+                const candidata = respuestas[seleccion.length % respuestas.length];
+                if (!seleccion.includes(candidata)) {
+                    seleccion.push(candidata);
+                } else {
+                    break;
+                }
+            }
+
+            return seleccion.map(item => item.respuesta);
+        }
+
+        function crearOpciones(concepto, version) {
+            const alternativas = version === 0
+                ? concepto.pregunta
+                : preguntaAlternativa(concepto.pregunta);
+            const opciones = [
+                { texto: concepto.respuesta, correcta: true },
+                ...respuestasDistractoras(concepto, version).map(texto => ({ texto, correcta: false }))
+            ];
+
+            return {
+                pregunta: alternativas,
+                opciones: mezclar(opciones)
+            };
+        }
+
+        const formularioSimulacro = document.getElementById('formulario-simulacro');
+        const contenedorPreguntas = document.getElementById('preguntas-simulacro');
+        const contenedorResultado = document.getElementById('resultado-simulacro');
+        const avisoError = document.getElementById('error-simulacro');
+        const progresoSimulacro = document.getElementById('progreso-simulacro');
+        let examenActual = [];
+
+        function generarSimulacro() {
+            contenedorPreguntas.replaceChildren();
+            contenedorResultado.hidden = true;
+            contenedorResultado.replaceChildren();
+            avisoError.hidden = true;
+            formularioSimulacro.hidden = false;
+            formularioSimulacro.dataset.calificado = 'false';
+
+            if (preguntasSimulacro.length < totalPreguntasSimulacro) {
+                formularioSimulacro.hidden = true;
+                avisoError.textContent = `El banco contiene ${preguntasSimulacro.length} conceptos; se necesitan al menos ${totalPreguntasSimulacro} para generar un examen.`;
+                avisoError.hidden = false;
+                progresoSimulacro.textContent = '';
+                return;
+            }
+
+            examenActual = mezclar(preguntasSimulacro)
+                .slice(0, totalPreguntasSimulacro)
+                .map(concepto => crearOpciones(concepto, Math.floor(Math.random() * 2)));
+
+            examenActual.forEach((pregunta, indice) => {
+                const fieldset = document.createElement('fieldset');
+                fieldset.className = 'pregunta-simulacro';
+
+                const legend = document.createElement('legend');
+                legend.textContent = `${indice + 1}. ${pregunta.pregunta}`;
+                fieldset.appendChild(legend);
+
+                const tema = document.createElement('p');
+                tema.className = 'tema-pregunta';
+                tema.textContent = pregunta.tema;
+                fieldset.appendChild(tema);
+
+                pregunta.opciones.forEach((opcion, indiceOpcion) => {
+                    const etiqueta = document.createElement('label');
+                    etiqueta.className = 'opcion-simulacro';
+
+                    const entrada = document.createElement('input');
+                    entrada.type = 'radio';
+                    entrada.name = `pregunta-${indice}`;
+                    entrada.value = String(indiceOpcion);
+                    entrada.dataset.correcta = String(opcion.correcta);
+                    etiqueta.appendChild(entrada);
+
+                    const texto = document.createElement('span');
+                    texto.textContent = opcion.texto;
+                    etiqueta.appendChild(texto);
+                    fieldset.appendChild(etiqueta);
+                });
+
+                const retroalimentacion = document.createElement('p');
+                retroalimentacion.className = 'retroalimentacion';
+                retroalimentacion.hidden = true;
+                fieldset.appendChild(retroalimentacion);
+                contenedorPreguntas.appendChild(fieldset);
+            });
+
+            progresoSimulacro.textContent = `${totalPreguntasSimulacro} preguntas · selecciona una respuesta por pregunta`;
+        }
+
+        function calificarSimulacro(evento) {
+            evento.preventDefault();
+            if (formularioSimulacro.dataset.calificado === 'true') {
+                return;
+            }
+
+            let aciertos = 0;
+            let sinResponder = 0;
+            const reactivos = contenedorPreguntas.querySelectorAll('.pregunta-simulacro');
+
+            reactivos.forEach(reactivo => {
+                const seleccionada = reactivo.querySelector('input:checked');
+                const retroalimentacion = reactivo.querySelector('.retroalimentacion');
+                const entradas = reactivo.querySelectorAll('input');
+                const opcionCorrecta = reactivo.querySelector('input[data-correcta="true"]');
+
+                if (!seleccionada) {
+                    sinResponder++;
+                } else if (seleccionada.dataset.correcta === 'true') {
+                    aciertos++;
+                }
+
+                entradas.forEach(entrada => {
+                    entrada.disabled = true;
+                    if (entrada.dataset.correcta === 'true') {
+                        entrada.closest('.opcion-simulacro').classList.add('correcta');
+                    }
+                });
+
+                if (seleccionada && seleccionada.dataset.correcta !== 'true') {
+                    seleccionada.closest('.opcion-simulacro').classList.add('incorrecta');
+                }
+
+                retroalimentacion.textContent = `Respuesta correcta: ${opcionCorrecta.nextElementSibling.textContent}`;
+                retroalimentacion.hidden = false;
+            });
+
+            const porcentaje = Math.round((aciertos / totalPreguntasSimulacro) * 100);
+            const titulo = document.createElement('h3');
+            titulo.textContent = `Resultado: ${aciertos} de ${totalPreguntasSimulacro} (${porcentaje}%)`;
+            const detalle = document.createElement('p');
+            detalle.textContent = sinResponder
+                ? `Aciertos: ${aciertos} · Sin responder: ${sinResponder}. Revisa las respuestas correctas debajo de cada pregunta.`
+                : 'Revisa las respuestas correctas debajo de cada pregunta.';
+            contenedorResultado.append(titulo, detalle);
+            contenedorResultado.hidden = false;
+            formularioSimulacro.dataset.calificado = 'true';
+            progresoSimulacro.textContent = 'Examen calificado';
+            contenedorResultado.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        document.getElementById('nuevo-simulacro').addEventListener('click', generarSimulacro);
+        formularioSimulacro.addEventListener('submit', calificarSimulacro);
+        generarSimulacro();
+    </script>
+</body>
+</html>
